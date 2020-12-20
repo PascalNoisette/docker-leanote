@@ -1,0 +1,17 @@
+version: '2'
+services:
+  leanote:
+    image: jim3ma/leanote:full-featured-2.6.1
+    ports:
+      - 9000:9000
+    volumes:
+      - ./leanote-data:/leanote/data
+      - ./app.conf:/leanote/conf/app.conf
+    restart: always
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo:3.0
+    volumes:
+      - ./leanote-db:/data/db
+      - ./leanote-data:/leanote/data
